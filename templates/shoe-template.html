@@ -13,36 +13,35 @@
     <li ng-class="{active: tab === 2}"><a ng-click="selectTab(2)">Specifications</a></li>
     <li ng-class="{active: tab === 3}"><a ng-click="selectTab(3)">Reviews</a></li>
   </ul>
-  <div class="panel" ng-show="tab === 1">
-    <h4>Description</h4>
-    <p>{{shoe.description}}</p>
-  </div>
-  <div class="panel" ng-show="tab === 2">
-    <h4>Specifications</h4>
-    <blockquote>
-      In Development
-    </blockquote>
-  </div>
-  <div class="panel" ng-show="tab === 3">
-    <h4>Reviews</h4>
-    <div class="review" ng-repeat="rev in shoe.reviews">
-      <div class="">
-        {{rev.date}}
-      </div>
-      <div class="">
-        <h6>Reviewed By:</h6>
-        {{rev.author}}
-      </div>
-      <div class="">
-        <h6>Rating:</h6>
-        {{rev.rating}}
-      </div>
-      <div class="">
-        {{rev.text}}
-      </div>
+  <div class="row panel-container">
+    <div class="panel" ng-show="tab === 1">
+      <h4>Description</h4>
+      <p>{{shoe.description}}</p>
     </div>
-    <div review-directive>
-
+    <div class="panel" ng-show="tab === 2">
+      <h4>Specifications</h4>
+      <blockquote>
+        In Development
+      </blockquote>
+    </div>
+    <div class="panel review" ng-show="tab === 3">
+      <h4>Reviews</h4>
+      <div class="" ng-repeat="rev in shoe.reviews">
+        <div class="">
+          Reviewed On: {{rev.date}}
+        </div>
+        <div class="">
+          Reviewed By: {{rev.author}}
+        </div>
+        <div class="">
+          Rating: {{rev.rating}}
+        </div>
+        <div class="review-text">
+          "{{rev.txt}}"
+        </div>
+        <hr>
+      </div>
+      <div review-directive></div>
     </div>
   </div>
 </div>

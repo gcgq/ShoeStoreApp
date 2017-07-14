@@ -1,20 +1,45 @@
 <div ng-controller="reviewController">
-    <!-- <input type="hidden" ng-model="newReview.date"> -->
-    <input ng-model="review.author" type="text" name="author" value="" placeholder="Your Name"><br>
-    Rating:
-    <select ng-model="review.rating" class="" name="rating">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select><br>
-    <textarea form="{{shoe.name}}-review" ng-model="review.text" type="textarea" name="review" value="" placeholder="Your Thoughts"></textarea><br>
-    <input ng-click="addReview(shoe)" type="submit" name="" value="Post review!" class="btn-submit btn">
+  <div class="alert alert-danger" role="alert"
+   ng-show="(reviewForm.rating.$dirty && reviewForm.rating.$invalid) ||
+            (reviewForm.author.$dirty && reviewForm.author.$valid) ||
+            (reviewForm.txt.$dirty && reviewForm.txt.$valid)">
+    <ul>
+      <li ng-show="reviewForm.rating.$dirty && reviewForm.rating.$valid">Rating is required</li>
+      <li ng-show="reviewForm.author.$dirty && reviewForm.author.$valid">Review is required</li>
+      <li ng-show="reviewForm.txt.$dirty && reviewForm.txt.$valid">Email is required</li>
+    </ul>
+  </div>
+  <form id="{{shoe.name}}-review" name="reviewForm" class="" ng-submit="reviewForm.$valid && addReview(shoe)" novalidate>
+      <fieldset>
+        <legend>Leave a Review</legend>
+          <div class="form-group" ng-class="{'has-error': reviewForm.author.$dirty && reviewForm.author.$invalid, 'has-success': reviewForm.author.$valid-email }">
+            <label class="control-label" for="author">Email Address:</label><br>
+            <input class="form-control" ng-model="review.author" type="email" name="author" value="" placeholder="Your Email Address" required>
+          </div>
+          <div class="form-group" ng-class="{'has-error': reviewForm.rating.$dirty && reviewForm.rating.$invalid }">
+            <label class="control-label" for="rating">Rating:</label><br>
+            <select ng-model="review.rating" class="form-control" name="rating" type="number" required>
+              <!-- <option selected>Your Score</option> -->
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="form-group" ng-class="{'has-error': reviewForm.txt.$dirty && reviewForm.txt.$invalid }"><br>
+            <label class="control-label" for="txt">Review Text:</label>
+            <textarea class="form-control" form="{{shoe.name}}-review" ng-model="review.txt" type="textarea" name="txt" placeholder="Your Thoughts" required></textarea>
+          </div>
+          <div class="">
+            {{reviewForm.$valid}} {{reviewForm.$pristine}}
+          </div>
+          <input type="submit" name="" value="Post review!" class="btn-submit btn">
+      </fieldset>
   </form>
 </div>

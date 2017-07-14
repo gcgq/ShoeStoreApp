@@ -19,6 +19,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       // }
 
     },
+
     {
       name:'Shoes02',
       price: Math.random() * 100,
@@ -31,6 +32,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes03',
       price: Math.random() * 100,
@@ -43,6 +45,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes04',
       price: Math.random() * 100,
@@ -55,6 +58,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes05',
       price: Math.random() * 100,
@@ -67,6 +71,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes06',
       price: Math.random() * 100,
@@ -79,6 +84,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes07',
       price: Math.random() * 100,
@@ -91,6 +97,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes08',
       price: Math.random() * 100,
@@ -103,6 +110,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ],
     },
+
     {
       name:'Shoes09',
       price: Math.random() * 100,
@@ -115,6 +123,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ],
     },
+
     {
       name:'Shoes10',
       price: Math.random() * 100,
@@ -127,6 +136,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes11',
       price: Math.random() * 100,
@@ -139,6 +149,7 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     },
+
     {
       name:'Shoes12',
       price: Math.random() * 100,
@@ -151,7 +162,8 @@ shoeStoreApp.controller("shoeController", function($scope){
       reviews:[
       ]
     }
-  ]
+  ];
+
   $scope.shoes = Shoes;
   // $scope.addReview = addReview();
 });
@@ -167,16 +179,18 @@ shoeStoreApp.controller("panelController", function($scope){
 shoeStoreApp.controller("reviewController", function($scope){
   $scope.review = {};
   $scope.addReview = function(shoe){
-    console.log(shoe.name);
+    $scope.review.date = new Date();
     if(!shoe.reviews){
       shoe.reviews=[];
     }
     shoe.reviews.push($scope.review);
+    $scope.review = {};
+    $scope.reviewForm.$setPristine();
+    $scope.reviewForm.$setUntouched();
   }
-
 });
 
-angular.module("shoeStoreApp").directive("shoeDirective",function(){
+angular.module("shoeStoreApp").directive("shoeDirective", function(){
   return {
     templateUrl: "../templates/shoe-template.html", //`<div>example directive div</div>`
   };
